@@ -7,4 +7,4 @@
 
 ### 前端
 
-https://github.com/oktfolio/fondo-fontend-angular
+https://github.com/oktfolio/ng-fondo
