@@ -58,11 +58,11 @@ public class UserController {
     @GetMapping("/users")
     public ResponseEntity listUsers(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
                                     @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-                                    @RequestParam(value = "order", defaultValue = "id") String orderBy,
-                                    @RequestParam(value = "desc", defaultValue = "false") boolean desc,
+                                    @RequestParam(value = "sortField", defaultValue = "id") String sortField,
+                                    @RequestParam(value = "sortOrder", defaultValue = "false") boolean sortOrder,
                                     @ModelAttribute ListUsersRequest listUsersRequest) {
 
-        return ResponseEntity.ok(userService.listUser(pageNum, pageSize, orderBy, desc, listUsersRequest));
+        return ResponseEntity.ok(userService.listUser(pageNum, pageSize, sortField, sortOrder, listUsersRequest));
     }
 
     @JsonView(SysUser.WithoutPasswordView.class)
