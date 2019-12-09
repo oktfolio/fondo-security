@@ -4,7 +4,7 @@
 
 - Spring Boot
 - MyBatis
-- ~~Druid~~
+- ~~Druid~~ Druid 改个 bug 都要 3 个月，弃用之。
 - Spring Security
 
 ### 前端
