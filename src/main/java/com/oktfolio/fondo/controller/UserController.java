@@ -58,11 +58,25 @@ public class UserController {
     @GetMapping("/users")
     public ResponseEntity listUsers(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
                                     @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-                                    @RequestParam(value = "sortField", defaultValue = "id") String sortField,
-                                    @RequestParam(value = "sortOrder", defaultValue = "false") boolean sortOrder,
+                                    @RequestParam(value = "sortField0") String sortField0,
+                                    @RequestParam(value = "sortOrder0") boolean sortOrder0,
+                                    @RequestParam(value = "sortField1") String sortField1,
+                                    @RequestParam(value = "sortOrder1") boolean sortOrder1,
+                                    @RequestParam(value = "sortField2") String sortField2,
+                                    @RequestParam(value = "sortOrder2") boolean sortOrder2,
+                                    @RequestParam(value = "sortField3") String sortField3,
+                                    @RequestParam(value = "sortOrder3") boolean sortOrder3,
+                                    @RequestParam(value = "sortField4") String sortField4,
+                                    @RequestParam(value = "sortOrder4") boolean sortOrder4,
+                                    @RequestParam(value = "sortField5") String sortField5,
+                                    @RequestParam(value = "sortOrder5") boolean sortOrder5,
+                                    @RequestParam(value = "sortField6") String sortField6,
+                                    @RequestParam(value = "sortOrder6") boolean sortOrder6,
+                                    @RequestParam(value = "sortField7") String sortField7,
+                                    @RequestParam(value = "sortOrder7") boolean sortOrder7,
                                     @ModelAttribute ListUsersRequest listUsersRequest) {
 
-        return ResponseEntity.ok(userService.listUser(pageNum, pageSize, sortField, sortOrder, listUsersRequest));
+        return ResponseEntity.ok(userService.listUser(pageNum, pageSize, sortField0, sortOrder0, listUsersRequest));
     }
 
     @JsonView(SysUser.WithoutPasswordView.class)

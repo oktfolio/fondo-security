@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,6 +19,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.ExceptionTranslationFilter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.web.cors.CorsUtils;
 
 /**
@@ -75,6 +78,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return filter;
     }
 
+    @Bean
+    public CsrfTokenRepository csrfTokenRepository(){
+        CookieCsrfTokenRepository cookieCsrfTokenRepository = new CookieCsrfTokenRepository();
+        cookieCsrfTokenRepository.setHeaderName("X-XSRF-TOKEN");
+        return cookieCsrfTokenRepository;
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider()
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/**").permitAll();
@@ -92,6 +107,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureHandler(authenticationFailHandler)
                 .and().addFilter(jwtAuthenticationFilter())
                 .exceptionHandling().authenticationEntryPoint(authenticationExceptionEntryPoint);
+
 
         authorizeConfigManager.config(http.authorizeRequests());
     }

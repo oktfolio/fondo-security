@@ -6,11 +6,17 @@ import com.oktfolio.fondo.model.ListResourcesRequest;
 import com.oktfolio.fondo.model.SysResource;
 import com.oktfolio.fondo.security.JWTUserDetails;
 import com.oktfolio.fondo.service.ResourceService;
+import io.swagger.models.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 import static com.oktfolio.fondo.common.result.ResourceResultCodeEnum.*;
 import static com.oktfolio.fondo.common.result.RoleResultCodeEnum.ROLE_CODE_EXISTS;
@@ -25,6 +31,16 @@ public class ResourceController {
 
     @Autowired
     private ResourceService resourceService;
+
+    @PostMapping("test")
+    public ResponseEntity test(HttpServletRequest httpRequest,
+                               AuthenticationManager authenticationManager) {
+
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken("test", "test");
+        usernamePasswordAuthenticationToken.setDetails(httpRequest,usernamePasswordAuthenticationToken);
+        authenticationManager.authenticate()
+
+    }
 
     @PostMapping("/resources")
     public ResponseEntity createResource(@RequestBody CreateResourceRequest createResourceRequest,

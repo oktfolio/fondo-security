@@ -8,8 +8,8 @@ public class ListUsersRequest {
     private Integer id;
     private String username;
     private String password;
-    private String realName;
-    private String mobile;
+    private String nickname;
+    private String phone;
     private String gender;
     private Integer status;
 
@@ -37,20 +37,20 @@ public class ListUsersRequest {
         this.password = password;
     }
 
-    public String getRealName() {
-        return realName;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setRealName(String realName) {
-        this.realName = realName;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
-    public String getMobile() {
-        return mobile;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getGender() {
